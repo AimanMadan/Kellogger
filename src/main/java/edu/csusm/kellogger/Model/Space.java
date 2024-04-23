@@ -1,9 +1,6 @@
 package edu.csusm.kellogger.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,8 +19,9 @@ public class Space {
     private int capacity;
     private int peopleCount;
     private int entrances;
+    private float usage = getUsage();
 
     public int getUsage() {
-        return (capacity != 0) ? (peopleCount * 100) / capacity : 0;
+        return (capacity > 0) ? peopleCount / capacity * 100 : 0;
     }
 }
