@@ -16,7 +16,7 @@ public class KelloggerApplication implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         Space library = new Space(0,"library", "Kellogg Library", 0, 1000, 0, 2,0);
         spaceRepository.save(library);
     }

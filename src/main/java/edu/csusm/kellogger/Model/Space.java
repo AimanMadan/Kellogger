@@ -19,6 +19,7 @@ public class Space {
     private int capacity;
     private int peopleCount;
     private int entrances;
+    @Column(name = "`usage`")
     private float usage = getUsage();
 
     public float getUsage() {
