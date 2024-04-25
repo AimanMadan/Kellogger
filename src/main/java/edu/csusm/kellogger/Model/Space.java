@@ -21,7 +21,7 @@ public class Space {
     private int entrances;
     private float usage = getUsage();
 
-    public int getUsage() {
-        return (capacity > 0) ? peopleCount / capacity * 100 : 0;
+    public float getUsage() {
+        return (peopleCount > 0) ? (float)peopleCount / capacity * 100 : 0;
     }
 }

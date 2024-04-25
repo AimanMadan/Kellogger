@@ -8,8 +8,8 @@ public interface ISpaceService {
     List<Space> getAllSpaces();
     Optional<Space> getSpace(int id);
     Space createSpace(Space space);
-    void deleteSpace(int id);
-    void addPerson(Space space);
-    void removePerson(Space space);
+    Space deleteSpace(int id);
+    Space addPerson(int id);
+    Space removePerson(int id);
     int getCount(Space space);
 }

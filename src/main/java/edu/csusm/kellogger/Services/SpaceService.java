@@ -31,32 +31,37 @@ public class SpaceService implements ISpaceService{
     }
 
     @Override
-    public void deleteSpace(int id) {
+    public Space deleteSpace(int id) {
+        var spaceOptional = spaceRepository.findById(id);
         spaceRepository.deleteById(id);
+        return spaceOptional.orElse(null);
     }
 
     @Override
-    public void addPerson(Space space) {
-        Optional<Space> spaceOptional = getSpace(space.getId());
+    public Space addPerson(int id) {
+        Optional<Space> spaceOptional = getSpace(id);
         if (spaceOptional.isPresent()){
             Space s = spaceOptional.get();
             var count = s.getPeopleCount();
             s.setPeopleCount(++count);
-            s.setUsage(space.getUsage());
-            spaceRepository.save(s);
+            var usage = s.getUsage();
+            s.setUsage(usage);
+            return spaceRepository.save(s);
         }
+        return null;
     }
 
     @Override
-    public void removePerson(Space space) {
-        Optional<Space> spaceOptional = getSpace(space.getId());
+    public Space removePerson(int id) {
+        Optional<Space> spaceOptional = getSpace(id);
         if (spaceOptional.isPresent()){
             Space s = spaceOptional.get();
             var count = s.getPeopleCount();
             s.setPeopleCount(--count);
-            s.setUsage(space.getUsage());
-            spaceRepository.save(s);
+            s.setUsage(s.getUsage());
+            return spaceRepository.save(s);
         }
+        return null;
     }
 
     @Override

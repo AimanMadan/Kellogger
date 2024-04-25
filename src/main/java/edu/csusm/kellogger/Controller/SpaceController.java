@@ -37,12 +37,16 @@ public class SpaceController {
 
     @DeleteMapping("/remove/{id}")
     public ResponseEntity<Space> deleteSpace(@PathVariable int id){
-        var space = spaceService.getSpace(id);
-        return space.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-//        if (space.isPresent()) {
-//            spaceService.deleteSpace(id);
-//            return ResponseEntity.ok(space.get());
-//        }
-//        return ResponseEntity.notFound().build();
+        var space = spaceService.deleteSpace(id);
+        return space != null ? ResponseEntity.ok(space) : ResponseEntity.notFound().build();
+    }
+
+    @PostMapping("/{id}/addPerson")
+    public ResponseEntity<Space> addPerson(@PathVariable int id){
+        return ResponseEntity.ok(spaceService.addPerson(id));
+    }
+    @PostMapping("/{id}/removePerson")
+    public ResponseEntity<Space> removePerson(@PathVariable int id){
+        return ResponseEntity.ok(spaceService.removePerson(id));
     }
 }
